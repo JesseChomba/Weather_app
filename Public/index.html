@@ -1,31 +1,36 @@
-<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Weather App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/skycons/1396634940/skycons.js"></script>
-
 </head>
-<body onload="document.getElementById('city').focus();">
+<body>
     <div class="container">
         <h1>Weather App</h1>
-        <button id="themeToggle" onclick="toggleTheme()">Toggle Light/Dark Theme</button>
+        <label class="theme-switch">
+            <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
+            <span class="slider">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </span>
+        </label>
         <p>Enter a city name to get the current weather:</p>
-        <input type="text" id="city" placeholder="Enter City Name" required />
-        <button onclick="getWeather()">Get Weather</button>
-        <button onclick="getLocation()">Use My Location</button>
+        <div class="input-group">
+            <input type="text" id="city" placeholder="Enter City Name" required aria-label="Enter city name for weather" />
+            <button onclick="getWeather()">Get Weather</button>
+            <button onclick="getLocation()">Use My Location</button>
+        </div>
         <label>
             <input type="checkbox" id="unitToggle" onchange="toggleUnit()" />
             Show °F
         </label>
         <div id="recentSearches"></div>
-        <div id="weatherInfo">
-            <canvas id="weatherIcon" width="128" height="128"></canvas>
-            <div id="weatherDetails"></div>
-        </div>
+        <div id="weatherInfo"></div>
         <div id="forecast"></div>
     </div>
     <script src="script.js"></script>
