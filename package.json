@@ -1,7 +1,7 @@
 {
   "name": "weather_app",
   "version": "1.0.0",
-  "main": "/api/weather.js",  
+  "main": "/api/weather.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node api/weather.js"
@@ -12,6 +12,7 @@
   "type": "commonjs",
   "description": "",
   "dependencies": {
+    "@vercel/analytics": "^1.5.0",
     "dotenv": "^16.5.0",
     "node-fetch": "^2.7.0"
   }
