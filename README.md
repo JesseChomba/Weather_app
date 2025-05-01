@@ -64,6 +64,16 @@ The server will run on [http://localhost:3000](http://localhost:3000).
 
 Static frontend files (HTML, CSS, JavaScript) are served from the `Public` directory.
 
+### Frontend Features
+
+- Light/Dark theme toggle button.
+- Input field to enter city name for weather lookup.
+- Button to get weather by current geolocation.
+- Unit toggle between Celsius (°C) and Fahrenheit (°F).
+- Display of recent city searches.
+- Weather icon animations using Skycons.
+- Display of current weather details and 5-day forecast.
+
 ## License
 
 This project is licensed under the ISC License.
