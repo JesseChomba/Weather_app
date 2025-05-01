@@ -34,7 +34,7 @@ function getWeather() {
     weatherInfo.innerHTML = "<div class='loader'></div>";
     forecastInfo.innerHTML = "<div class='loader'></div>";
 
-    fetch(`/weather?city=${city}&units=${unit}`)
+    fetch(`/api/weather?city=${city}&units=${unit}`)
         .then(res => res.json())
         .then(data => {
             if (data.message) throw new Error(data.message);
@@ -48,7 +48,7 @@ function getWeather() {
             `;
         });
 
-    fetch(`/forecast?city=${city}&units=${unit}`)
+    fetch(`/api/forecast?city=${city}&units=${unit}`)
         .then(res => res.json())
         .then(data => {
             console.log("Forecast API response (city):", data); // Debug log
@@ -193,7 +193,7 @@ function getLocation() {
         forecastInfo.innerHTML = "<div class='loader'></div>";
 
         // Fetch current weather
-        fetch(`/weather?lat=${latitude}&lon=${longitude}&units=${unit}`)
+        fetch(`/api/weather?lat=${latitude}&lon=${longitude}&units=${unit}`)
             .then(res => res.json())
             .then(data => {
                 if (data.message) throw new Error(data.message);
@@ -209,7 +209,7 @@ function getLocation() {
             });
 
         // Fetch 5-day forecast
-        fetch(`/forecast?lat=${latitude}&lon=${longitude}&units=${unit}`)
+        fetch(`/api/forecast?lat=${latitude}&lon=${longitude}&units=${unit}`)
             .then(res => res.json())
             .then(data => {
                 console.log("Forecast API response (geolocation):", data); // Debug log
