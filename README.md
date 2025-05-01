@@ -6,7 +6,7 @@ This is a simple weather application backend built with Express.js. It uses the 
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/JesseChomba/Weather_app.git
    cd Weather_app
    ```
 
