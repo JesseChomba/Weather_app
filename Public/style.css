@@ -1,9 +1,39 @@
-/* public/style.css */
+/* Theme Variables */
+:root {
+    --bg-color: #f0f0f0;
+    --text-color: #000;
+    --container-bg: #fff;
+    --input-bg: #fff;
+    --input-text: #000;
+    --button-bg: #e0e0e0;
+    --button-text: #000;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --link-color: #333;
+}
+
+body.dark {
+    --bg-color: #121212;
+    --text-color: #f0f0f0;
+    --container-bg: #1e1e1e;
+    --input-bg: #2c2c2c;
+    --input-text: #f0f0f0;
+    --button-bg: #333;
+    --button-text: #f0f0f0;
+    --shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
+    --link-color: #ccc;
+}
+
+* {
+    box-sizing: border-box;
+    transition: background-color 0.4s, color 0.4s, box-shadow 0.3s;
+}
+
 body {
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,28 +41,76 @@ body {
 }
 
 .container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: var(--container-bg);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
     text-align: center;
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
 input, button {
-    padding: 10px;
-    margin: 5px;
+    padding: 12px 16px;
+    margin: 8px 5px;
     font-size: 1em;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    transition: transform 0.2s;
 }
 
-#weatherInfo img {
-    width: 60px;
-    height: 60px;
+input {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border: 1px solid #ccc;
+    width: 60%;
+}
+
+input:focus {
+    border-color: #888;
+}
+
+button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.03);
+    opacity: 0.9;
+}
+
+#weatherInfo {
+    margin-top: 20px;
+    line-height: 1.5;
+}
+
+#themeToggle {
+    margin-bottom: 15px;
 }
 
 @media (max-width: 600px) {
     .container {
         width: 90%;
     }
+
+    input {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+body {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }

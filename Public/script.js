@@ -1,9 +1,25 @@
 let unit = "metric"; // default is Celsius
+const skycons = new Skycons({ color: "black" }); // will adjust based on theme
 
 function toggleUnit() {
     unit = document.getElementById("unitToggle").checked ? "imperial" : "metric";
     const city = document.getElementById("city").value.trim();
     if (city) getWeather();
+}
+
+function getSkyconIcon(weatherMain) {
+    const map = {
+        "Clear": "CLEAR_DAY",
+        "Clouds": "PARTLY_CLOUDY_DAY",
+        "Rain": "RAIN",
+        "Drizzle": "SLEET",
+        "Snow": "SNOW",
+        "Thunderstorm": "SLEET",
+        "Mist": "FOG",
+        "Haze": "FOG",
+        "Fog": "FOG"
+    };
+    return map[weatherMain] || "CLOUDY";
 }
 
 function getWeather() {
@@ -38,14 +54,23 @@ function getWeather() {
 function showCurrentWeather(data) {
     const weatherInfo = document.getElementById("weatherInfo");
     const tempUnit = unit === "metric" ? "°C" : "°F";
+    const iconId = "weatherIcon";
+    const iconCanvas = `<canvas id="${iconId}" width="128" height="128"></canvas>`;
+    
     weatherInfo.innerHTML = `
         <h2>${data.name}, ${data.sys.country}</h2>
-        <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="weather icon">
+        ${iconCanvas}
         <p>${data.weather[0].description}</p>
         <p>Temperature: ${data.main.temp} ${tempUnit}</p>
         <p>Humidity: ${data.main.humidity}%</p>
         <p>Wind Speed: ${data.wind.speed} ${unit === "metric" ? "m/s" : "mph"}</p>
     `;
+
+    const skyconType = getSkyconIcon(data.weather[0].main);
+    const isDark = document.body.classList.contains("dark");
+    skycons.color = isDark ? "white" : "black";
+    skycons.set(iconId, Skycons[skyconType]);
+    skycons.play();
 }
 
 function showForecast(data) {
@@ -104,4 +129,39 @@ function getLocation() {
     });
 }
 
-showRecent(); // Load recent cities on start
+function toggleTheme() {
+    const isDark = document.body.classList.toggle("dark");
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+    updateThemeButton();
+
+    // Update Skycon icon color
+    skycons.color = isDark ? "white" : "black";
+    const iconEl = document.getElementById("weatherIcon");
+    if (iconEl) {
+        const iconType = skycons.list["weatherIcon"];
+        if (iconType) {
+            skycons.set("weatherIcon", iconType);
+        }
+    }
+}
+
+function loadTheme() {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark");
+    }
+    updateThemeButton();
+}
+
+function updateThemeButton() {
+    const isDark = document.body.classList.contains("dark");
+    const btn = document.getElementById("themeToggle");
+    if (btn) {
+        btn.textContent = isDark ? "Switch to Light Mode" : "Switch to Dark Mode";
+    }
+}
+
+window.onload = () => {
+    loadTheme();
+    showRecent();
+};
