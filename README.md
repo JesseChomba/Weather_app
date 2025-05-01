@@ -1,6 +1,6 @@
 # Weather App
 
-This is a simple weather application backend built with Express.js. It uses the OpenWeatherMap API to provide current weather data and 5-day forecasts based on city names or geographic coordinates. The app serves a static frontend from the `Public` directory.
+This is a simple weather application backend built with Express.js. It uses the OpenWeatherMap API to provide current weather data and 5-day forecasts based on city names or geographic coordinates. The app serves a static frontend from the project root directory.
 
 ## Installation
 
@@ -12,8 +12,9 @@ This is a simple weather application backend built with Express.js. It uses the 
 
 2. Install dependencies:
    ```bash
-   npm install node-fetch@2 ## It is necesary to note that you need to uninstall existing node fetch packages before this one
+   npm install node-fetch@2
    ```
+   _Note: If you have other versions of node-fetch installed, you may need to uninstall them before installing version 2._
 
 3. Create a `.env` file in the root directory and add your OpenWeatherMap API key:
    ```
@@ -25,8 +26,10 @@ This is a simple weather application backend built with Express.js. It uses the 
 Start the server with:
 
 ```bash
-npm start server.js
+npm start
 ```
+
+This runs the backend server located at `api/weather.js`.
 
 The server will run on [http://localhost:3000](http://localhost:3000).
 
@@ -60,9 +63,15 @@ The server will run on [http://localhost:3000](http://localhost:3000).
   /forecast?city=London&units=metric
   ```
 
+## Backend
+
+The backend API files are located in the `api` folder:
+- `weather.js`: Handles current weather data requests.
+- `forecast.js`: Handles 5-day weather forecast requests.
+
 ## Frontend
 
-Static frontend files (HTML, CSS, JavaScript) are served from the `Public` directory.
+Static frontend files (HTML, CSS, JavaScript) are served from the project root directory.
 
 ### Frontend Features
 
